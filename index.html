@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pasquali 2026 Buglio - Scopri, vota e vivi la tradizione">
+    <meta name="theme-color" content="#0a1628">
+    <title>Pasquali 2026 | Buglio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Screenshot_2026-02-03_211348-removebg-preview.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="Screenshot_2026-02-03_211348-removebg-preview.png" alt="Logo Buglio" class="logo-image">
+                <span>Pasquali Buglio</span>
+            </a>
+            
+            <button class="nav-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-overlay"></div>
+            <div class="nav-menu">
+                <button class="nav-close" aria-label="Chiudi menu">×</button>
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <a href="/significato"><i class="fas fa-book-open"></i> Significato</a>
+                <a href="/partecipanti"><i class="fas fa-users"></i> Partecipanti</a>
+                <a href="/realta-aumentata"><i class="fas fa-cube"></i> AR 3D</a>
+                <a href="/recensioni"><i class="fas fa-smile"></i> Recensioni</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Logo nel Hero -->
+            <img src="Screenshot_2026-02-03_211348-removebg-preview.png" alt="Logo Buglio" class="hero-logo">
+            
+            <!-- Badge -->
+            <div class="hero-badge">
+                <i class="fas fa-mountain"></i>
+                <span>Pasquali 2026</span>
+            </div>
+            
+            <!-- Main Title -->
+            <h1 class="pasquale-number">PASQUALE N°12</h1>
+            <p class="pasquale-subtitle">La tradizione incontra l'innovazione</p>
+            
+            <!-- QR Code Section -->
+            <div class="qr-section">
+                <div class="qr-glow"></div>
+                <a href="https://pasquali-bormio.it/vota" target="_blank" class="qr-link-wrapper">
+                    <div class="qr-code-container" id="qr-code-container">
+                        <!-- QR Code generato dinamicamente -->
+                    </div>
+                    <span class="qr-click-hint">
+                        <i class="fas fa-external-link-alt"></i> Clicca per votare
+                    </span>
+                </a>
+                <p class="qr-instruction">
+                    <i class="fas fa-qrcode"></i> Scansiona con la fotocamera
+                </p>
+                <div class="qr-actions">
+                    <a href="https://pasquali-bormio.it/vota" target="_blank" class="qr-action-btn">
+                        <i class="fas fa-vote-yea"></i> Vota Ora
+                    </a>
+                    <button class="qr-action-btn qr-secondary" onclick="downloadQR()">
+                        <i class="fas fa-download"></i> Salva QR
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Quick Navigation Links -->
+            <div class="quick-links">
+                <a href="/significato.html" class="quick-link">
+                    <span class="quick-link-icon">📖</span>
+                    <span class="quick-link-text">Significato</span>
+                </a>
+                <a href="/partecipanti.html" class="quick-link">
+                    <span class="quick-link-icon">👥</span>
+                    <span class="quick-link-text">Partecipanti</span>
+                </a>
+                <a href="/realta-aumentata.html" class="quick-link">
+                    <span class="quick-link-icon">🥽</span>
+                    <span class="quick-link-text">AR 3D</span>
+                </a>
+                <a href="/recensioni.html" class="quick-link">
+                    <span class="quick-link-icon">😊</span>
+                    <span class="quick-link-text">Recensioni</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="page-content">
+        <!-- Anteprima significato -->
+        <div class="card fade-in">
+            <div class="card-icon">★</div>
+            <h3 class="card-title">Il Pasquale N°12</h3>
+            <p class="card-text">
+                Scopri il significato profondo dietro il nostro pasquale, 
+                le tradizioni che lo ispirano e la storia che racconta.
+                Un'opera d'arte che celebra l'identità di Buglio.
+            </p>
+            <a href="/significato.html" class="qr-action-btn mt-20" style="display: inline-flex;">
+                <i class="fas fa-arrow-right"></i> Scopri di Più
+            </a>
+        </div>
+        
+        <!-- Anteprima AR -->
+        <div class="card fade-in">
+            <div class="card-icon">🥽</div>
+            <h3 class="card-title">Vivi l'Esperienza AR</h3>
+            <p class="card-text">
+                Non perderti la versione in Realtà Aumentata del pasquale!
+                Scansiona con il tuo smartphone e immergiti in un'esperienza unica.
+            </p>
+            <a href="/realta-aumentata.html" class="qr-action-btn mt-20" style="display: inline-flex;">
+                <i class="fas fa-cube"></i> Prova AR 3D
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">★ Pasquali 2026 Buglio ★</div>
+            <p class="footer-text">
+                Celebrando la tradizione attraverso l'arte e l'innovazione
+            </p>
+            
+            <div class="footer-social">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Pasquali Buglio. Tutti i diritti riservati.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">
+                    <i class="fas fa-map-marker-alt"></i> Bormio, (SO), Italia
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

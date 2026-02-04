@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lascia la tua opinione sul Pasquale N°12 - La tua soddisfazione è importante">
+    <meta name="theme-color" content="#0a1628">
+    <title>Recensioni & Feedback | Pasquali 2026 Buglio</title>
+    
+    <link rel="icon" type="image/png" href="Screenshot_2026-02-03_211348-removebg-preview.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="Screenshot_2026-02-03_211348-removebg-preview.png" alt="Logo Buglio" class="logo-image">
+                <span>Pasquali Buglio</span>
+            </a>
+            
+            <button class="nav-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-overlay"></div>
+            <div class="nav-menu">
+                <button class="nav-close" aria-label="Chiudi menu">×</button>
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <a href="/significato"><i class="fas fa-book-open"></i> Significato</a>
+                <a href="/partecipanti"><i class="fas fa-users"></i> Partecipanti</a>
+                <a href="/realta-aumentata"><i class="fas fa-cube"></i> AR 3D</a>
+                <a href="/recensioni"><i class="fas fa-smile"></i> Recensioni</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <img src="Screenshot_2026-02-03_211348-removebg-preview.png" alt="Logo Buglio" class="page-logo">
+        <h1 class="page-title">
+            <i class="fas fa-smile"></i>
+            La Tua Opinione
+        </h1>
+        <p class="page-subtitle">Raccontaci la tua esperienza con il Pasquale N°12</p>
+    </section>
+
+    <section class="page-content">
+        <div class="reviews-hero fade-in">
+            <h2><i class="fas fa-heart"></i> Il Tuo Feedback è Importante</h2>
+            <p>
+                La tua opinione ci aiuta a migliorare e a mantenere viva 
+                la tradizione dei Pasquali. Condividi con noi le tue emozioni 
+                e le tue impressioni su questa straordinaria opera d'arte.
+            </p>
+        </div>
+
+        <div class="emoji-rating-container fade-in stagger-1">
+            <div class="emoji-question">
+                <h3>Quanto ti è piaciuto il Pasquale N°12?</h3>
+                <p style="font-size: 0.9rem; color: rgba(250,246,239,0.6); margin-top: 0.5rem;">
+                    Seleziona l'emoji che rappresenta la tua esperienza
+                </p>
+            </div>
+            
+            <form id="feedback-form">
+                <div class="emoji-options" id="emoji-options">
+                    <button type="button" class="emoji-btn" data-value="1" data-emoji="😞">
+                        <span class="emoji">😞</span>
+                        <span class="label">Deluso</span>
+                    </button>
+                    <button type="button" class="emoji-btn" data-value="2" data-emoji="😕">
+                        <span class="emoji">😕</span>
+                        <span class="label">Neutro</span>
+                    </button>
+                    <button type="button" class="emoji-btn" data-value="3" data-emoji="🙂">
+                        <span class="emoji">🙂</span>
+                        <span class="label">Buono</span>
+                    </button>
+                    <button type="button" class="emoji-btn" data-value="4" data-emoji="😊">
+                        <span class="emoji">😊</span>
+                        <span class="label">Molto Buono</span>
+                    </button>
+                    <button type="button" class="emoji-btn" data-value="5" data-emoji="😍">
+                        <span class="emoji">😍</span>
+                        <span class="label">Eccellente</span>
+                    </button>
+                </div>
+                
+                <input type="hidden" id="rating-value" name="rating" value="">
+                <input type="hidden" id="rating-emoji" name="rating-emoji" value="">
+                
+                <div class="comment-section">
+                    <h4><i class="fas fa-comment-alt"></i> Vuoi aggiungere un commento?</h4>
+                    <p style="font-size: 0.85rem; color: rgba(250,246,239,0.6); margin-bottom: 1rem; text-align: center;">
+                        (Opzionale - La tua recensione rimarrà privata)
+                    </p>
+                    <textarea 
+                        id="comment-text" 
+                        name="comment" 
+                        class="comment-input" 
+                        placeholder="Scrivi qui le tue impressioni, suggerimenti o complimenti..."
+                        rows="4"
+                    ></textarea>
+                </div>
+                
+                <div class="review-submit">
+                    <button type="submit" class="submit-btn" id="submit-btn" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                        Invia Feedback
+                    </button>
+                </div>
+                
+                <div class="privacy-note">
+                    <i class="fas fa-lock"></i>
+                    <span>Le tue informazioni saranno utilizzate solo per migliorare i futuri Pasquali</span>
+                </div>
+            </form>
+            
+            <div class="success-message" id="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Grazie per il tuo feedback!</h3>
+                <p>La tua opinione è stata inviata con successo.<br>Ci aiuta a migliorare ogni anno.</p>
+                <button type="button" class="qr-action-btn mt-20" onclick="resetForm()" style="margin-top: 1.5rem;">
+                    <i class="fas fa-redo"></i> Invia un altro feedback
+                </button>
+            </div>
+        </div>
+
+        <div class="card mt-40 fade-in stagger-2">
+            <div class="card-icon">💌</div>
+            <h3 class="card-title">Il Tuo Feedback è Prezioso</h3>
+            <p class="card-text">
+                Lavoriamo per creare un Pasquale sempre più bello 
+                e significativo. Le tue opinioni e suggerimenti ci aiutano 
+                a capire cosa funziona e cosa possiamo migliorare.
+            </p>
+            <p class="card-text mt-20">
+                Le recensioni sono private e non vengono pubblicate. 
+                Solo il nostro team riceve questi feedback per continuare 
+                a mantenere alta la tradizione di Buglio.
+            </p>
+        </div>
+
+        <div class="card mt-20 fade-in stagger-3">
+            <h3 class="card-title" style="text-align: center; margin-bottom: 1.5rem;">
+                <i class="fas fa-compass"></i> Esplora Altro
+            </h3>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/index" class="qr-action-btn">
+                    <i class="fas fa-home"></i> Torna alla Home
+                </a>
+                <a href="/significato" class="qr-action-btn qr-secondary">
+                    <i class="fas fa-book-open"></i> Scopri il Significato
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">★ Pasquali 2026 Buglio ★</div>
+            <p class="footer-text">
+                Grazie per aver condiviso la tua opinione
+            </p>
+            
+            <div class="footer-social">
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Pasquali Buglio. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emojiBtns = document.querySelectorAll('.emoji-btn');
+            const ratingInput = document.getElementById('rating-value');
+            const ratingEmojiInput = document.getElementById('rating-emoji');
+            const submitBtn = document.getElementById('submit-btn');
+            const form = document.getElementById('feedback-form');
+            const successMsg = document.getElementById('success-message');
+            
+            emojiBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    emojiBtns.forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const value = this.dataset.value;
+                    const emoji = this.dataset.emoji;
+                    ratingInput.value = value;
+                    ratingEmojiInput.value = emoji;
+                    submitBtn.disabled = false;
+                });
+            });
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const rating = ratingInput.value;
+                const comment = document.getElementById('comment-text').value;
+                const emoji = ratingEmojiInput.value;
+                
+                const subject = encodeURIComponent(`[Pasquali 2026 Buglio] Feedback - ${emoji} (${rating}/5)`);
+                const body = encodeURIComponent(
+                    `NUOVO FEEDBACK - Pasquali 2026 Buglio\n` +
+                    `==================================\n\n` +
+                    `Data: ${new Date().toLocaleString('it-IT')}\n` +
+                    `Voto: ${emoji} (${rating}/5)\n\n` +
+                    `Commento:\n${comment || 'Nessun commento inserito'}\n\n` +
+                    `---\nInviato da: Pasquali Buglio Website`
+                );
+                
+                window.location.href = `mailto:nico.trameri@gmail.com?subject=${subject}&body=${body}`;
+                
+                form.style.display = 'none';
+                successMsg.classList.add('show');
+            });
+        });
+        
+        function resetForm() {
+            const form = document.getElementById('feedback-form');
+            const successMsg = document.getElementById('success-message');
+            const emojiBtns = document.querySelectorAll('.emoji-btn');
+            const ratingInput = document.getElementById('rating-value');
+            const commentInput = document.getElementById('comment-text');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            emojiBtns.forEach(b => b.classList.remove('selected'));
+            ratingInput.value = '';
+            commentInput.value = '';
+            submitBtn.disabled = true;
+            
+            successMsg.classList.remove('show');
+            form.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

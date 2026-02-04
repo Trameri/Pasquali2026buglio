@@ -16,5 +16,27 @@
         "Cache-Control": "no-cache"
       }
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/significato",
+      "destination": "/significato.html"
+    },
+    {
+      "source": "/partecipanti",
+      "destination": "/partecipanti.html"
+    },
+    {
+      "source": "/realta-aumentata",
+      "destination": "/realta-aumentata.html"
+    },
+    {
+      "source": "/recensioni",
+      "destination": "/recensioni.html"
+    }
   ]
 }
