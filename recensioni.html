@@ -198,26 +198,48 @@
                 });
             });
             
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
+                
                 const rating = ratingInput.value;
                 const comment = document.getElementById('comment-text').value;
                 const emoji = ratingEmojiInput.value;
                 
-                const subject = encodeURIComponent(`[Pasquali 2026 Buglio] Feedback - ${emoji} (${rating}/5)`);
-                const body = encodeURIComponent(
-                    `NUOVO FEEDBACK - Pasquali 2026 Buglio\n` +
-                    `==================================\n\n` +
-                    `Data: ${new Date().toLocaleString('it-IT')}\n` +
-                    `Voto: ${emoji} (${rating}/5)\n\n` +
-                    `Commento:\n${comment || 'Nessun commento inserito'}\n\n` +
-                    `---\nInviato da: Pasquali Buglio Website`
-                );
+                // Mappa dei voti in base all'emoji
+                const ratingLabels = {
+                    '1': 'Deluso',
+                    '2': 'Neutro', 
+                    '3': 'Buono',
+                    '4': 'Molto Buono',
+                    '5': 'Eccellente'
+                };
                 
-                window.location.href = `mailto:nico.trameri@gmail.com?subject=${subject}&body=${body}`;
+                // Prepara i dati per l'invio
+                const formData = new FormData();
+                formData.append('rating_emoji', emoji);
+                formData.append('rating_value', rating);
+                formData.append('rating_label', ratingLabels[rating] || '');
+                formData.append('comment', comment);
+                formData.append('data_invio', new Date().toLocaleString('it-IT'));
+                formData.append('_subject', 'Nuovo Feedback Pasquale 2026 Buglio');
                 
-                form.style.display = 'none';
-                successMsg.classList.add('show');
+                // Invia a Formsubmit.co
+                try {
+                    const response = await fetch('https://formsubmit.co/ajax/nico.trameri@gmail.com', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        form.style.display = 'none';
+                        successMsg.classList.add('show');
+                    } else {
+                        alert('Errore nell\'invio. Riprova.');
+                    }
+                } catch (error) {
+                    console.error('Errore:', error);
+                    alert('Errore nell\'invio. Riprova.');
+                }
             });
         });
         
