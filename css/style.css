@@ -355,6 +355,20 @@ img { max-width: 100%; height: auto; display: block; }
 
 .qr-link-wrapper { position: relative; display: block; text-decoration: none; z-index: 1; }
 
+.qr-button {
+  display: inline-block;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.qr-button:hover {
+  transform: scale(1.05);
+}
+
+.qr-button:hover .qr-code-container {
+  box-shadow: var(--shadow-blue-strong);
+}
+
 .qr-code-container {
   width: 180px;
   height: 180px;
