@@ -406,7 +406,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .qr-instruction i { color: var(--buglio-blue-light); }
 
-.qr-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.qr-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 10; }
 
 .qr-action-btn {
   display: inline-flex;
@@ -424,6 +424,9 @@ img { max-width: 100%; height: auto; display: block; }
   text-transform: uppercase;
   letter-spacing: 0.05em;
   box-shadow: var(--shadow-blue);
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .qr-action-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-blue-strong); }
