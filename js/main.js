@@ -11,7 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════
 const CONFIG = {
     pasqualeNumber: "PASQUALE N°12",
-    qrUrl: "https://pasquali-bormio.it/vota",
+    qrUrl: window.location.origin + window.location.pathname.replace(/[^\/]*$/, '') + "vota.html",
     emailRecipient: "nico.trameri@gmail.com"
 };
 
