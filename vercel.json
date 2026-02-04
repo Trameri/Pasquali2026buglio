@@ -1,42 +1,46 @@
 {
   "builds": [
     {
-      "src": "**/*.html",
+      "src": "index.html",
       "use": "@vercel/static"
     },
     {
-      "src": "**/*.{jpg,css,js,png}",
+      "src": "significato.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "partecipanti.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "realta-aumentata.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "recensioni.html",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/index.html"
+      "src": "/",
+      "dest": "/index.html"
     },
     {
-      "source": "/significato",
-      "destination": "/significato.html"
+      "src": "/significato",
+      "dest": "/significato.html"
     },
     {
-      "source": "/partecipanti",
-      "destination": "/partecipanti.html"
+      "src": "/partecipanti",
+      "dest": "/partecipanti.html"
     },
     {
-      "source": "/realta-aumentata",
-      "destination": "/realta-aumentata.html"
+      "src": "/realta-aumentata",
+      "dest": "/realta-aumentata.html"
     },
     {
-      "source": "/recensioni",
-      "destination": "/recensioni.html"
+      "src": "/recensioni",
+      "dest": "/recensioni.html"
     }
   ]
 }
