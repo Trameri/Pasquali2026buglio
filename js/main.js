@@ -10,7 +10,7 @@
 // CONFIGURAZIONE
 // ═══════════════════════════════════════════════════════════════════════
 const CONFIG = {
-    pasqualeNumber: "PASQUALE N°12",
+    pasqualeNumber: "PASQUALE N°19",
     qrUrl: window.location.origin + window.location.pathname.replace(/[^\/]*$/, '') + "vota.html",
     emailRecipient: "nico.trameri@gmail.com"
 };
