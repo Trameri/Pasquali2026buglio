@@ -112,14 +112,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 .logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   font-family: var(--font-accent);
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--buglio-cream);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .logo:hover { transform: scale(1.02); }
@@ -131,8 +133,19 @@ img { max-width: 100%; height: auto; display: block; }
   filter: drop-shadow(0 0 8px rgba(30,92,179,0.5));
 }
 
-.logo span { color: var(--buglio-blue-light); }
+.logo span { color: var(--buglio-blue-light); font-size: 0.75rem; }
 .logo:hover span { color: var(--buglio-gold); }
+
+@media (min-width: 576px) {
+  .logo {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  .logo span { font-size: 1.1rem; }
+}
 
 /* Menu Mobile Toggle */
 .nav-toggle {
