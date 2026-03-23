@@ -112,14 +112,17 @@ img { max-width: 100%; height: auto; display: block; }
 
 .logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.5rem;
   font-family: var(--font-accent);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--buglio-cream);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .logo:hover { transform: scale(1.02); }
@@ -133,6 +136,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 .logo span { color: var(--buglio-blue-light); }
 .logo:hover span { color: var(--buglio-gold); }
+
+@media (min-width: 576px) {
+  .logo {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    text-align: left;
+  }
+}
 
 /* Menu Mobile Toggle */
 .nav-toggle {
