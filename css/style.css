@@ -115,7 +115,7 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: center;
   gap: 0.75rem;
   font-family: var(--font-accent);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--buglio-cream);
   letter-spacing: 0.08em;
