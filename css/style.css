@@ -436,8 +436,9 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Quick Links */
 .quick-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   margin-top: 1.5rem;
   animation: fadeInUp 0.8s ease-out 0.5s both;
@@ -467,7 +468,6 @@ img { max-width: 100%; height: auto; display: block; }
 .quick-link-icon { font-size: 2rem; transition: var(--transition-fast); }
 .quick-link:hover .quick-link-icon { transform: scale(1.15); }
 .quick-link-text { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--buglio-blue-light); }
-.quick-link.full-width { grid-column: span 2; }
 
 /* Page Headers */
 .page-header {
@@ -905,8 +905,6 @@ a-scene { width: 100%; height: 400px; }
 
 @media (min-width: 576px) {
   .qr-actions { flex-direction: row; }
-  .quick-links { grid-template-columns: repeat(3, 1fr); }
-  .quick-link.full-width { grid-column: auto; }
 }
 
 @media (min-width: 768px) {
@@ -917,7 +915,6 @@ a-scene { width: 100%; height: 400px; }
   .nav-menu a:hover { padding-left: 1rem; }
   .nav-menu a::before { display: none; }
   .hero-content { max-width: 800px; }
-  .quick-links { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
   .quick-link { padding: 1.75rem 1.25rem; }
   .live-counter { gap: 4rem; }
   .card { padding: 2.5rem 2rem; }
@@ -929,7 +926,6 @@ a-scene { width: 100%; height: 400px; }
 
 @media (min-width: 992px) {
   .page-content { max-width: 1000px; padding: 4rem 2rem; }
-  .quick-links { max-width: 800px; margin-left: auto; margin-right: auto; }
   .symbol-grid { grid-template-columns: repeat(2, 1fr); }
   .ar-hero, .thanks-section { padding: 3rem; }
 }
