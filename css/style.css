@@ -448,8 +448,10 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   padding: 1.5rem 1rem;
+  min-width: 140px;
   background: var(--gradient-glass);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(30,92,179,0.15);
