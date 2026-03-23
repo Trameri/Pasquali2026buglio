@@ -115,7 +115,7 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: center;
   gap: 0.75rem;
   font-family: var(--font-accent);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--buglio-cream);
   letter-spacing: 0.08em;
@@ -125,14 +125,28 @@ img { max-width: 100%; height: auto; display: block; }
 .logo:hover { transform: scale(1.02); }
 
 .logo-image {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
+  flex-shrink: 0;
   filter: drop-shadow(0 0 8px rgba(30,92,179,0.5));
 }
 
-.logo span { color: var(--buglio-blue-light); }
+.logo span { 
+  color: var(--buglio-blue-light);
+  white-space: nowrap;
+}
 .logo:hover span { color: var(--buglio-gold); }
+
+@media (min-width: 576px) {
+  .logo {
+    font-size: 1.1rem;
+  }
+  .logo-image {
+    width: 40px;
+    height: 40px;
+  }
+}
 
 /* Menu Mobile Toggle */
 .nav-toggle {
