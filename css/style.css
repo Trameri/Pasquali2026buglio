@@ -112,9 +112,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 .logo {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--font-accent);
   font-size: 1.1rem;
   font-weight: 700;
@@ -132,24 +131,8 @@ img { max-width: 100%; height: auto; display: block; }
   filter: drop-shadow(0 0 8px rgba(30,92,179,0.5));
 }
 
-.logo span { 
-  color: var(--buglio-blue-light); 
-  text-align: center;
-  width: 100%;
-}
+.logo span { color: var(--buglio-blue-light); }
 .logo:hover span { color: var(--buglio-gold); }
-
-@media (min-width: 576px) {
-  .logo {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .logo span {
-    text-align: left;
-    width: auto;
-  }
-}
 
 /* Menu Mobile Toggle */
 .nav-toggle {
