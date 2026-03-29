@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Scopri il Pasquale n° 20 in Realtà Aumentata e versione 3D interattiva">
     <meta name="theme-color" content="#0a1628">
     <title>Realtà Aumentata 3D | Pasquali 2026 Buglio</title>
@@ -17,8 +17,306 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    
+    <style>
+        /* Stili specifici per la pagina AR mobile-friendly */
+        .user-menu {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+        }
+
+        .user-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(30, 92, 179, 0.2);
+            border: 1px solid rgba(30, 92, 179, 0.3);
+            border-radius: 50%;
+            color: var(--buglio-blue-light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+
+        .user-menu-btn:hover {
+            background: rgba(30, 92, 179, 0.3);
+            transform: scale(1.05);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: var(--primary-dark);
+            border: 1px solid rgba(30, 92, 179, 0.3);
+            border-radius: var(--radius-md);
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-card);
+        }
+
+        .user-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--buglio-cream);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .user-dropdown-item:hover {
+            background: rgba(30, 92, 179, 0.15);
+            color: var(--buglio-blue-light);
+        }
+
+        .user-dropdown-item i {
+            width: 20px;
+            color: var(--buglio-blue-light);
+        }
+
+        .user-dropdown-divider {
+            height: 1px;
+            background: rgba(30, 92, 179, 0.2);
+            margin: 0.5rem 0;
+        }
+
+        .logout-btn {
+            color: var(--accent-red) !important;
+        }
+
+        .logout-btn:hover {
+            background: rgba(196, 30, 58, 0.15) !important;
+            color: var(--accent-red) !important;
+        }
+
+        .logout-btn i {
+            color: var(--accent-red) !important;
+        }
+
+        /* Viewer 3D ottimizzato per mobile */
+        .model-viewer {
+            width: 100%;
+            height: 50vh;
+            min-height: 300px;
+            max-height: 500px;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            touch-action: none;
+        }
+
+        a-scene {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Controlli AR più grandi per touch */
+        .ar-controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding: 0 1rem;
+        }
+
+        .ar-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            box-shadow: var(--shadow-blue);
+            min-height: 50px;
+        }
+
+        .ar-btn:active {
+            transform: scale(0.98);
+        }
+
+        .ar-btn.secondary {
+            background: transparent;
+            border: 2px solid var(--buglio-blue);
+            color: var(--buglio-blue-light);
+        }
+
+        /* Istruzioni compatte per mobile */
+        .ar-instructions {
+            background: rgba(30, 92, 179, 0.1);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-left: 3px solid var(--buglio-blue);
+        }
+
+        .ar-instructions h4 {
+            font-family: var(--font-display);
+            color: var(--buglio-blue-light);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .ar-instructions ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .ar-instructions li {
+            padding: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(250, 246, 239, 0.8);
+            font-size: 0.85rem;
+            background: rgba(30, 92, 179, 0.05);
+            border-radius: var(--radius-sm);
+        }
+
+        .ar-instructions li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0.5rem;
+            color: var(--buglio-blue-light);
+        }
+
+        /* Placeholder per modello */
+        .model-placeholder {
+            text-align: center;
+            color: var(--buglio-blue-light);
+            padding: 1rem;
+        }
+
+        .model-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.5;
+        }
+
+        .model-placeholder p {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive per schermi più grandi */
+        @media (min-width: 768px) {
+            .model-viewer {
+                height: 60vh;
+                max-height: 600px;
+            }
+
+            .ar-controls {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .ar-instructions ul {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .user-menu {
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+
+            .user-menu-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .model-viewer {
+                height: 45vh;
+                min-height: 250px;
+            }
+
+            .ar-btn {
+                padding: 0.875rem;
+                font-size: 0.8rem;
+            }
+
+            .ar-instructions ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animazione per il menu utente */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .user-dropdown.active {
+            animation: fadeInScale 0.2s ease-out;
+        }
+    </style>
 </head>
 <body>
+    <!-- Menu Utente con Logout -->
+    <div class="user-menu">
+        <button class="user-menu-btn" onclick="toggleUserMenu()" aria-label="Menu utente">
+            <i class="fas fa-user"></i>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+            <div class="user-dropdown-item">
+                <i class="fas fa-user-circle"></i>
+                <span>Il mio account</span>
+            </div>
+            <div class="user-dropdown-item">
+                <i class="fas fa-cog"></i>
+                <span>Impostazioni</span>
+            </div>
+            <div class="user-dropdown-divider"></div>
+            <div class="user-dropdown-item logout-btn" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Esci</span>
+            </div>
+        </div>
+    </div>
+
     <header class="header">
         <nav class="nav-container">
             <a href="index.html" class="logo">
@@ -53,7 +351,7 @@
     </section>
 
     <section class="page-content">
-        <div class="card fade-in" style="text-align: center; margin-bottom: 2rem;">
+        <div class="card fade-in" style="text-align: center; margin-bottom: 1.5rem;">
             <div class="card-icon">✨</div>
             <h2 class="card-title">Un'Opera che Non Svanisce</h2>
             <p class="card-text">
@@ -75,7 +373,7 @@
 
         <div class="ar-viewer-container fade-in stagger-1">
             <div class="model-viewer">
-                <a-scene embedded vr-mode-ui="enabled: true">
+                <a-scene embedded vr-mode-ui="enabled: true" gesture-detector>
                     <a-entity camera look-controls wasd-controls position="0 2 6">
                         <a-cursor color="#1e5cb3" fuse="false"></a-cursor>
                     </a-entity>
@@ -116,27 +414,30 @@
                 <div class="model-placeholder">
                     <i class="fas fa-cube"></i>
                     <p>Stai visualizzando il modello 3D</p>
-                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Trascina per ruotare - Scroll per zoom</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Trascina per ruotare - Pinch per zoom</p>
                 </div>
             </div>
             
             <div class="ar-controls">
                 <button class="ar-btn" onclick="resetCamera()">
-                    <i class="fas fa-redo"></i> Reset Vista
+                    <i class="fas fa-redo"></i> Reset
                 </button>
                 <button class="ar-btn secondary" onclick="toggleAutoRotate()">
                     <i class="fas fa-sync"></i> Auto Rotazione
+                </button>
+                <button class="ar-btn" onclick="startAR()" style="grid-column: span 2;">
+                    <i class="fas fa-mobile-alt"></i> Avvia AR
                 </button>
             </div>
         </div>
 
         <div class="ar-instructions fade-in stagger-2">
-            <h4><i class="fas fa-info-circle"></i> Come Usare il Visualizzatore 3D</h4>
+            <h4><i class="fas fa-info-circle"></i> Come Usare</h4>
             <ul>
-                <li><strong>Ruota:</strong> Trascina il mouse/finger sul modello</li>
-                <li><strong>Zoom:</strong> Usa la rotellina del mouse o pinch su mobile</li>
-                <li><strong>Muovi:</strong> Usa i tasti WASD o trascina due dita</li>
-                <li><strong>VR:</strong> Clicca sul pulsante VR per la realtà virtuale</li>
+                <li><strong>Ruota:</strong> Trascina sul modello</li>
+                <li><strong>Zoom:</strong> Pinch su mobile</li>
+                <li><strong>Muovi:</strong> Due dita</li>
+                <li><strong>VR:</strong> Pulsante VR</li>
             </ul>
         </div>
 
@@ -148,11 +449,6 @@
                 Puoi portarlo con te ovunque, mostrarlo agli amici, e conservarlo per sempre 
                 nella memoria digitale. Un'opera che vive oltre il tempo.
             </p>
-            <div class="ar-controls" style="margin-top: 1.5rem;">
-                <button class="ar-btn" onclick="startAR()">
-                    <i class="fas fa-mobile-alt"></i> Avvia Esperienza AR
-                </button>
-            </div>
         </div>
 
         <div class="card mt-20 fade-in stagger-4">
@@ -163,7 +459,6 @@
                 <a href="significato.html" class="qr-action-btn">
                     <i class="fas fa-book-open"></i> Il Significato
                 </a>
-
             </div>
         </div>
     </section>
@@ -184,12 +479,55 @@
     <script src="js/main.js"></script>
     <script>
         let autoRotate = false;
-        
+        let userMenuOpen = false;
+
+        // Menu utente
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            userMenuOpen = !userMenuOpen;
+            
+            if (userMenuOpen) {
+                dropdown.classList.add('active');
+            } else {
+                dropdown.classList.remove('active');
+            }
+        }
+
+        // Chiudi menu utente quando si clicca fuori
+        document.addEventListener('click', function(e) {
+            const userMenu = document.querySelector('.user-menu');
+            const dropdown = document.getElementById('userDropdown');
+            
+            if (userMenuOpen && !userMenu.contains(e.target)) {
+                dropdown.classList.remove('active');
+                userMenuOpen = false;
+            }
+        });
+
+        // Gestione logout
+        function handleLogout() {
+            // Qui puoi aggiungere la logica di logout effettiva
+            // Per esempio: chiamata API, pulizia sessione, ecc.
+            
+            // Mostra conferma
+            if (confirm('Sei sicuro di voler uscire?')) {
+                // Simula logout
+                showNotification('Logout effettuato con successo', 'success');
+                
+                // Reindirizza alla home dopo 1 secondo
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }
+        }
+
+        // Funzioni 3D
         function resetCamera() {
             const camera = document.querySelector('[camera]');
             if (camera) {
                 camera.setAttribute('position', '0 2 6');
                 camera.setAttribute('rotation', '0 0 0');
+                showNotification('Vista resettata', 'success');
             }
         }
         
@@ -201,6 +539,7 @@
                     if (autoRotate) {
                         camera.removeAttribute('animation');
                         autoRotate = false;
+                        showNotification('Auto rotazione disattivata', 'success');
                     } else {
                         camera.setAttribute('animation', {
                             property: 'rotation',
@@ -210,14 +549,76 @@
                             easing: 'linear'
                         });
                         autoRotate = true;
+                        showNotification('Auto rotazione attivata', 'success');
                     }
                 }
             }
         }
         
         function startAR() {
-            alert('Per utilizzare la Realtà Aumentata:\n\n1. Apri questa pagina sullo smartphone\n2. Inquadra il Pasquale reale\n3. Clicca sul pulsante AR\n\nOppure visita: https://pasquali-bormio.it/ar');
+            // Controlla se il dispositivo supporta AR
+            if (navigator.xr) {
+                navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+                    if (supported) {
+                        showNotification('AR supportato! Avvio in corso...', 'success');
+                        // Qui puoi implementare l'avvio effettivo dell'AR
+                    } else {
+                        showARInstructions();
+                    }
+                });
+            } else {
+                showARInstructions();
+            }
         }
+
+        function showARInstructions() {
+            alert(
+                '🧭 Per utilizzare la Realtà Aumentata:\n\n' +
+                '1. Apri questa pagina sullo smartphone\n' +
+                '2. Assicurati di avere la fotocamera attiva\n' +
+                '3. Inquadra il Pasquale reale\n\n' +
+                'Per un\'esperienza completa, visita:\n' +
+                'https://pasquali-bormio.it/ar'
+            );
+        }
+
+        // Supporto gesture per mobile
+        AFRAME.registerComponent('gesture-detector', {
+            init: function() {
+                const sceneEl = this.el;
+                let initialDistance = 0;
+                let initialScale = 1;
+
+                sceneEl.addEventListener('touchstart', (e) => {
+                    if (e.touches.length === 2) {
+                        initialDistance = Math.hypot(
+                            e.touches[0].pageX - e.touches[1].pageX,
+                            e.touches[0].pageY - e.touches[1].pageY
+                        );
+                        const model = document.querySelector('#pasquale-3d');
+                        if (model) {
+                            initialScale = model.getAttribute('scale').x || 1;
+                        }
+                    }
+                });
+
+                sceneEl.addEventListener('touchmove', (e) => {
+                    if (e.touches.length === 2) {
+                        const currentDistance = Math.hypot(
+                            e.touches[0].pageX - e.touches[1].pageX,
+                            e.touches[0].pageY - e.touches[1].pageY
+                        );
+                        const scale = initialScale * (currentDistance / initialDistance);
+                        const clampedScale = Math.min(Math.max(scale, 0.5), 2);
+                        
+                        const model = document.querySelector('#pasquale-3d');
+                        if (model) {
+                            model.setAttribute('scale', `${clampedScale} ${clampedScale} ${clampedScale}`);
+                        }
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
