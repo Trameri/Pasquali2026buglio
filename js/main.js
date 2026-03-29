@@ -10,8 +10,8 @@
 // CONFIGURAZIONE
 // ═══════════════════════════════════════════════════════════════════════
 const CONFIG = {
-    pasqualeNumber: "PASQUALE N°19",
-    qrUrl: window.location.origin + window.location.pathname.replace(/[^\/]*$/, '') + "vota.html",
+    pasqualeNumber: "PASQUALE N°20",
+    qrUrl: "https://www.repartidibormio.it/vota-il-tuo-pasquale-preferito",
     emailRecipient: "nico.trameri@gmail.com"
 };
 
